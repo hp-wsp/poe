@@ -117,10 +117,8 @@ pub mod pallet {
 
 			ensure!(sender == owner, Error::<T>::NotProofOfOwner);
 
-			Proofs::<T>::remove(&claim);
-
 			let current_block = <frame_system::Pallet<T>>::block_number();
-
+			//直接覆盖
 			Proofs::<T>::insert(&claim, (to_account.clone(), current_block));
 
 			Self::deposit_event(Event::ClaimTransfer(sender, to_account, claim));
